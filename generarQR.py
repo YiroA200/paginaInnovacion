@@ -1,6 +1,6 @@
 import qrcode
 
-url = "https://tu-dominio.com"
+url = "https://YiroA200.github.io/paginaInnovacion"
 
 qr = qrcode.make(url)
 qr.save("qr_la_finestra.png")
