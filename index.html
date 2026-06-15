@@ -1,193 +1,287 @@
     <!DOCTYPE html>
     <html lang="es">
     <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Green Voice · Jardines Verticales Reciclados</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"/>
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Segoe UI', sans-serif; background: #f9f9f6; color: #1a1a1a; }
+        *{box-sizing:border-box;margin:0;padding:0;}
+        body{font-family:'Segoe UI',sans-serif;background:#fff;color:#1a1a1a;}
 
-        .hero {
-        background: linear-gradient(135deg, #1D9E75 0%, #0F6E56 100%);
-        padding: 4rem 2rem 3rem;
-        text-align: center;
-        color: white;
+        nav{
+        background:#085041;padding:0.75rem 1.5rem;
+        display:flex;align-items:center;justify-content:space-between;
+        position:sticky;top:0;z-index:100;
         }
-        .hero-icon {
-        width: 60px; height: 60px;
-        background: rgba(255,255,255,0.18);
-        border-radius: 50%;
-        display: flex; align-items: center; justify-content: center;
-        margin: 0 auto 1.5rem;
-        font-size: 28px;
-        }
-        .hero-badge {
-        display: inline-block;
-        background: rgba(255,255,255,0.2);
-        border: 1px solid rgba(255,255,255,0.35);
-        border-radius: 999px;
-        padding: 4px 16px;
-        font-size: 13px;
-        margin-bottom: 1.2rem;
-        }
-        .hero h1 { font-size: 2rem; font-weight: 500; line-height: 1.3; margin-bottom: 0.75rem; }
-        .hero p  { font-size: 1rem; opacity: 0.88; max-width: 480px; margin: 0 auto; line-height: 1.7; }
+        .logo{color:white;font-size:1.2rem;font-weight:500;letter-spacing:0.02em;}
+        .logo span{color:#5DCAA5;}
+        .nav-links{display:flex;gap:1.5rem;}
+        .nav-links a{color:rgba(255,255,255,0.75);font-size:13px;text-decoration:none;}
+        .nav-links a:hover{color:white;}
 
-        .section     { padding: 2.5rem 2rem; max-width: 720px; margin: 0 auto; }
-        .section-alt { background: #f0f4f0; }
-        .section-alt .section { background: transparent; }
-
-        .section-title { font-size: 1.2rem; font-weight: 500; margin-bottom: 0.4rem; }
-        .section-sub   { font-size: 0.92rem; color: #555; margin-bottom: 1.5rem; line-height: 1.7; }
-
-        hr.divider { border: none; border-top: 0.5px solid #ddd; }
-
-        .info-block { display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1rem; }
-        .info-icon  {
-        width: 38px; height: 38px; min-width: 38px;
-        background: #E1F5EE; border-radius: 8px;
-        display: flex; align-items: center; justify-content: center;
-        font-size: 20px; color: #0F6E56;
+        .hero-slider{position:relative;height:320px;overflow:hidden;}
+        .hero-slides{display:flex;height:100%;transition:transform 0.5s ease;}
+        .hero-slide{
+        min-width:100%;height:100%;
+        display:flex;flex-direction:column;align-items:center;justify-content:center;
+        text-align:center;padding:2.5rem 2rem;
         }
-        .info-text h4 { font-size: 0.92rem; font-weight: 500; margin-bottom: 0.2rem; }
-        .info-text p  { font-size: 0.84rem; color: #555; line-height: 1.5; }
+        .hs1{background:linear-gradient(160deg,#085041,#1D9E75);}
+        .hs2{background:linear-gradient(160deg,#04342C,#0F6E56);}
+        .hs3{background:linear-gradient(160deg,#0F6E56,#5DCAA5);}
+        .hero-slide .icon-big{font-size:56px;color:rgba(255,255,255,0.22);margin-bottom:1rem;}
+        .hero-badge{
+        display:inline-block;background:rgba(255,255,255,0.18);
+        border:1px solid rgba(255,255,255,0.3);border-radius:999px;
+        padding:4px 16px;font-size:12px;color:white;margin-bottom:0.75rem;
+        }
+        .hero-slide h2{font-size:2rem;font-weight:500;color:white;line-height:1.25;margin-bottom:0.5rem;}
+        .hero-slide p{font-size:0.95rem;color:rgba(255,255,255,0.82);line-height:1.6;max-width:420px;}
+        .hero-nav{
+        position:absolute;bottom:16px;left:0;right:0;
+        display:flex;justify-content:center;gap:8px;
+        }
+        .hdot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4);border:none;padding:0;cursor:pointer;}
+        .hdot.on{background:white;}
+        .harr{
+        position:absolute;top:50%;transform:translateY(-50%);
+        background:rgba(0,0,0,0.25);border:none;color:white;
+        width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:18px;
+        display:flex;align-items:center;justify-content:center;
+        }
+        .harr.l{left:14px;}
+        .harr.r{right:14px;}
 
-        .card-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-        gap: 12px;
+        .stats-bar{
+        background:#085041;
+        display:grid;grid-template-columns:repeat(3,1fr);
+        text-align:center;padding:1rem 0;
         }
-        .card {
-        background: white;
-        border: 0.5px solid #ddd;
-        border-radius: 12px;
-        padding: 1rem 1.1rem;
-        }
-        .card-icon { font-size: 22px; color: #1D9E75; margin-bottom: 0.5rem; }
-        .card h3   { font-size: 0.88rem; font-weight: 500; margin-bottom: 0.3rem; }
-        .card p    { font-size: 0.82rem; color: #666; line-height: 1.5; }
+        .stat-item{border-right:0.5px solid rgba(255,255,255,0.15);}
+        .stat-item:last-child{border:none;}
+        .stat-n{font-size:1.4rem;font-weight:500;color:#5DCAA5;}
+        .stat-l{font-size:11px;color:rgba(255,255,255,0.6);margin-top:3px;}
 
-        .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 0.5rem; }
-        .tag  {
-        display: inline-block;
-        background: #E1F5EE; color: #0F6E56;
-        border-radius: 999px;
-        padding: 4px 13px; font-size: 12px;
-        }
+        .sec{padding:2rem 1.5rem;max-width:960px;margin:0 auto;}
+        .sec-label{font-size:11px;font-weight:500;letter-spacing:0.1em;color:#0F6E56;text-transform:uppercase;margin-bottom:0.4rem;}
+        .sec-title{font-size:1.3rem;font-weight:500;color:#1a1a1a;margin-bottom:1.2rem;}
 
-        .qr-hint {
-        display: flex; align-items: center; gap: 10px;
-        background: #f0f4f0; border: 0.5px solid #ccc;
-        border-radius: 8px; padding: 0.8rem 1rem;
-        margin-top: 1.2rem; font-size: 0.84rem; color: #555;
+        .cards-scroll{display:flex;gap:14px;overflow-x:auto;padding-bottom:8px;scrollbar-width:none;}
+        .cards-scroll::-webkit-scrollbar{display:none;}
+        .ccard{
+        min-width:200px;background:#fff;
+        border:0.5px solid #e0e0e0;border-radius:14px;overflow:hidden;flex-shrink:0;
         }
-        .qr-hint i { color: #1D9E75; font-size: 24px; }
+        .ccard-img{height:120px;display:flex;align-items:center;justify-content:center;font-size:48px;}
+        .ci1{background:linear-gradient(135deg,#E1F5EE,#9FE1CB);}
+        .ci2{background:linear-gradient(135deg,#d4f0e5,#5DCAA5);}
+        .ci3{background:linear-gradient(135deg,#9FE1CB,#1D9E75);}
+        .ci4{background:linear-gradient(135deg,#E1F5EE,#0F6E56);}
+        .ccard-body{padding:0.9rem;}
+        .ccard-body h4{font-size:0.9rem;font-weight:500;color:#1a1a1a;margin-bottom:0.25rem;}
+        .ccard-body p{font-size:0.8rem;color:#666;line-height:1.5;}
 
-        footer {
-        background: #085041; color: rgba(255,255,255,0.75);
-        padding: 1.5rem 2rem; text-align: center; font-size: 0.82rem;
+        hr.div{border:none;border-top:0.5px solid #e8e8e8;}
+
+        .steps{display:flex;flex-direction:column;gap:12px;}
+        .step{display:flex;gap:14px;align-items:flex-start;background:#fff;border:0.5px solid #e0e0e0;border-radius:14px;padding:1.1rem;}
+        .step-ico{min-width:42px;height:42px;border-radius:10px;background:#E1F5EE;display:flex;align-items:center;justify-content:center;font-size:22px;color:#0F6E56;}
+        .step-txt h4{font-size:0.92rem;font-weight:500;color:#1a1a1a;margin-bottom:0.25rem;}
+        .step-txt p{font-size:0.82rem;color:#666;line-height:1.5;}
+
+        .nunoa-box{background:#085041;border-radius:14px;padding:1.5rem;}
+        .nunoa-box h3{font-size:1.1rem;font-weight:500;color:white;margin-bottom:0.5rem;}
+        .nunoa-box p{font-size:0.85rem;color:rgba(255,255,255,0.75);line-height:1.7;margin-bottom:1rem;}
+        .nunoa-tags{display:flex;flex-wrap:wrap;gap:7px;}
+        .ntag{background:rgba(255,255,255,0.12);border:0.5px solid rgba(255,255,255,0.2);border-radius:999px;padding:4px 13px;font-size:12px;color:rgba(255,255,255,0.85);}
+
+        .qr-section{background:#E1F5EE;padding:2rem 1.5rem;display:flex;gap:1.5rem;align-items:center;max-width:100%;}
+        .qr-icon{font-size:52px;color:#085041;flex-shrink:0;}
+        .qr-text h4{font-size:1.1rem;font-weight:500;color:#085041;margin-bottom:0.4rem;}
+        .qr-text p{font-size:0.88rem;color:#0F6E56;line-height:1.6;}
+
+        footer{background:#04342C;padding:1.5rem 2rem;text-align:center;}
+        footer p{font-size:0.85rem;color:rgba(255,255,255,0.6);}
+        footer strong{color:#5DCAA5;}
+        footer span{font-size:12px;opacity:0.5;}
+
+        @media(max-width:600px){
+        .hero-slide h2{font-size:1.5rem;}
+        .sec{padding:1.5rem 1.1rem;}
+        .qr-section{flex-direction:column;text-align:center;}
         }
-        footer strong { color: white; font-weight: 500; }
-        footer span   { font-size: 11px; opacity: 0.7; }
     </style>
     </head>
     <body>
 
-    <!-- HERO -->
-    <div class="hero">
-        <div class="hero-icon">
-        <i class="ti ti-plant-2" style="color:white;font-size:28px;"></i>
-        </div>
-        <div class="hero-badge">Proyecto estudiantil · Santiago, Chile</div>
-        <h1>Green Voice<br>Jardines verticales para La Finestra</h1>
-        <p>Un proyecto estudiantil que transforma botellas PET recicladas en jardines verticales para el restaurante La Finestra, en el corazón del barrio Ñuñoa.</p>
+    <nav>
+    <div class="logo">Green<span>Voice</span></div>
+    <div class="nav-links">
+        <a href="#proyecto">Proyecto</a>
+        <a href="#como">Cómo funciona</a>
+        <a href="#nunoa">Ñuñoa Zero</a>
     </div>
+    </nav>
 
-    <!-- SECCIÓN 1: Green Voice -->
-    <div class="section">
-        <p class="section-title">¿Qué es Green Voice?</p>
-        <p class="section-sub">Green Voice es un proyecto estudiantil que busca aportar a la sustentabilidad urbana mediante la creación de jardines verticales fabricados con botellas plásticas tipo PET (N°1) recicladas. Estos jardines se instalan en el restaurante La Finestra de Ñuñoa, combinando diseño, conciencia ambiental y educación sobre economía circular.</p>
-
-        <div class="info-block">
-        <div class="info-icon"><i class="ti ti-recycle"></i></div>
-        <div class="info-text">
-            <h4>Materiales 100% reciclados</h4>
-            <p>Usamos botellas PET N°1, uno de los plásticos más reciclables del mercado, dándoles una segunda vida útil como macetas en jardines verticales.</p>
+    <!-- HERO SLIDER -->
+    <div class="hero-slider">
+    <div class="hero-slides" id="hs">
+        <div class="hero-slide hs1">
+        <div class="icon-big" aria-hidden="true"><i class="ti ti-plant-2"></i></div>
+        <div class="hero-badge">Proyecto estudiantil · Ñuñoa, Santiago</div>
+        <h2>Green Voice</h2>
+        <p>Jardines verticales reciclados para el restaurante La Finestra</p>
         </div>
+        <div class="hero-slide hs2">
+        <div class="icon-big" aria-hidden="true"><i class="ti ti-recycle"></i></div>
+        <div class="hero-badge">Material reciclado</div>
+        <h2>Botellas PET N°1</h2>
+        <p>Transformamos plástico reciclado en espacios verdes y llamativos para el barrio</p>
         </div>
-        <div class="info-block">
-        <div class="info-icon"><i class="ti ti-qrcode"></i></div>
-        <div class="info-text">
-            <h4>Educación con código QR</h4>
-            <p>Cada jardín incluye códigos QR con información sobre reciclaje y economía circular para concientizar a los visitantes del restaurante.</p>
-        </div>
-        </div>
-        <div class="info-block">
-        <div class="info-icon"><i class="ti ti-eye"></i></div>
-        <div class="info-text">
-            <h4>Diseño llamativo</h4>
-            <p>Colores vibrantes y formas creativas para captar la atención de los clientes y fomentar el interés por el medioambiente.</p>
-        </div>
+        <div class="hero-slide hs3">
+        <div class="icon-big" aria-hidden="true"><i class="ti ti-qrcode"></i></div>
+        <div class="hero-badge">Educación ambiental</div>
+        <h2>Escanea y aprende</h2>
+        <p>Códigos QR en cada jardín con información sobre reciclaje y economía circular</p>
         </div>
     </div>
+    <button class="harr l" onclick="hPrev()" aria-label="Anterior"><i class="ti ti-chevron-left"></i></button>
+    <button class="harr r" onclick="hNext()" aria-label="Siguiente"><i class="ti ti-chevron-right"></i></button>
+    <div class="hero-nav">
+        <button class="hdot on" onclick="hGo(0)" aria-label="Slide 1"></button>
+        <button class="hdot" onclick="hGo(1)" aria-label="Slide 2"></button>
+        <button class="hdot" onclick="hGo(2)" aria-label="Slide 3"></button>
+    </div>
+    </div>
 
-    <hr class="divider">
+    <!-- STATS BAR -->
+    <div class="stats-bar">
+    <div class="stat-item"><div class="stat-n">PET #1</div><div class="stat-l">Material usado</div></div>
+    <div class="stat-item"><div class="stat-n">100%</div><div class="stat-l">Reciclado</div></div>
+    <div class="stat-item"><div class="stat-n">QR</div><div class="stat-l">Educativo</div></div>
+    </div>
 
-    <!-- SECCIÓN 2: Plaza Ñuñoa Zero -->
-    <div class="section-alt">
-        <div class="section">
-        <p class="section-title">Plaza Ñuñoa Zero</p>
-        <p class="section-sub">Plaza Ñuñoa Zero es una iniciativa real impulsada por el municipio de Ñuñoa, la Cámara de Comercio, Turismo y Emprendedores de Ñuñoa (CCTEÑ) y el Gobierno de Santiago, que posiciona al sector como el <strong>primer barrio gastronómico sustentable de Chile</strong>. El proyecto busca reducir a cero los residuos de los restaurantes del barrio mediante un modelo colaborativo de gestión de residuos orgánicos, reciclables y electrónicos.</p>
-
-        <div class="card-grid">
-            <div class="card">
-            <div class="card-icon"><i class="ti ti-building-community"></i></div>
-            <h3>Barrio gastronómico</h3>
-            <p>Integra a más de 15 restaurantes del sector en un modelo sustentable y certificado.</p>
-            </div>
-            <div class="card">
-            <div class="card-icon"><i class="ti ti-leaf"></i></div>
-            <h3>Gestión de residuos</h3>
-            <p>Recolección y tratamiento de residuos orgánicos, reciclables y electrónicos del barrio.</p>
-            </div>
-            <div class="card">
-            <div class="card-icon"><i class="ti ti-users"></i></div>
-            <h3>Trabajo colaborativo</h3>
-            <p>Une a emprendedores, municipio, colegios, vecinos y gobierno regional en un objetivo común.</p>
-            </div>
+    <!-- SECCIÓN PROYECTO -->
+    <div id="proyecto" class="sec">
+    <div class="sec-label">El proyecto</div>
+    <div class="sec-title">¿Qué es Green Voice?</div>
+    <div class="cards-scroll">
+        <div class="ccard">
+        <div class="ccard-img ci1" aria-hidden="true"><i class="ti ti-recycle" style="color:#085041"></i></div>
+        <div class="ccard-body">
+            <h4>Material reciclado</h4>
+            <p>Botellas PET N°1 convertidas en macetas para jardines verticales.</p>
+        </div>
+        </div>
+        <div class="ccard">
+        <div class="ccard-img ci2" aria-hidden="true"><i class="ti ti-plant-2" style="color:#085041"></i></div>
+        <div class="ccard-body">
+            <h4>Jardín vertical</h4>
+            <p>Plantas vivas instaladas en La Finestra, restaurante de Ñuñoa.</p>
+        </div>
+        </div>
+        <div class="ccard">
+        <div class="ccard-img ci3" aria-hidden="true"><i class="ti ti-qrcode" style="color:#fff"></i></div>
+        <div class="ccard-body">
+            <h4>Código QR</h4>
+            <p>Cada jardín educa sobre reciclaje y economía circular.</p>
+        </div>
+        </div>
+        <div class="ccard">
+        <div class="ccard-img ci4" aria-hidden="true"><i class="ti ti-heart" style="color:#fff"></i></div>
+        <div class="ccard-body">
+            <h4>Impacto real</h4>
+            <p>Aportamos al primer barrio gastronómico sustentable de Chile.</p>
         </div>
         </div>
     </div>
-
-    <hr class="divider">
-
-    <!-- SECCIÓN 3: Economía circular -->
-    <div class="section">
-        <p class="section-title">Economía circular en acción</p>
-        <p class="section-sub">Green Voice se suma al espíritu de Plaza Ñuñoa Zero llevando la economía circular directamente al espacio del restaurante La Finestra. Cada jardín vertical es un ejemplo tangible de cómo los residuos plásticos pueden transformarse en valor estético y educativo.</p>
-
-        <div class="tags">
-        <span class="tag">♻️ Reciclaje PET</span>
-        <span class="tag">🌱 Economía circular</span>
-        <span class="tag">🏙️ Barrio sustentable</span>
-        <span class="tag">📲 Tecnología QR</span>
-        <span class="tag">🌍 Sustentabilidad</span>
-        <span class="tag">💚 Comunidad Ñuñoa</span>
-        </div>
-
-        <div class="qr-hint">
-        <i class="ti ti-qrcode"></i>
-        <span>Escanea los códigos QR en nuestros jardines para acceder a contenido educativo sobre reciclaje y economía circular.</span>
-        </div>
     </div>
 
-    <!-- FOOTER -->
+    <hr class="div">
+
+    <!-- SECCIÓN CÓMO FUNCIONA -->
+    <div id="como" class="sec">
+    <div class="sec-label">Cómo funciona</div>
+    <div class="sec-title">Del plástico al jardín</div>
+    <div class="steps">
+        <div class="step">
+        <div class="step-ico" aria-hidden="true"><i class="ti ti-bottle"></i></div>
+        <div class="step-txt">
+            <h4>Recolección de PET</h4>
+            <p>Se juntan botellas plásticas tipo PET N°1, las más reciclables del mercado.</p>
+        </div>
+        </div>
+        <div class="step">
+        <div class="step-ico" aria-hidden="true"><i class="ti ti-cut"></i></div>
+        <div class="step-txt">
+            <h4>Preparación y diseño</h4>
+            <p>Las botellas se cortan, pintan y transforman en macetas coloridas y llamativas.</p>
+        </div>
+        </div>
+        <div class="step">
+        <div class="step-ico" aria-hidden="true"><i class="ti ti-wall"></i></div>
+        <div class="step-txt">
+            <h4>Instalación en La Finestra</h4>
+            <p>Se montan como jardines verticales en el restaurante del barrio Ñuñoa.</p>
+        </div>
+        </div>
+        <div class="step">
+        <div class="step-ico" aria-hidden="true"><i class="ti ti-qrcode"></i></div>
+        <div class="step-txt">
+            <h4>QR educativo</h4>
+            <p>Se agregan códigos QR con información sobre reciclaje y economía circular.</p>
+        </div>
+        </div>
+    </div>
+    </div>
+
+    <hr class="div">
+
+    <!-- SECCIÓN ÑUÑOA ZERO -->
+    <div id="nunoa" class="sec">
+    <div class="sec-label">Contexto</div>
+    <div class="sec-title">Plaza Ñuñoa Zero</div>
+    <div class="nunoa-box">
+        <h3>Primer barrio gastronómico sustentable de Chile</h3>
+        <p>Iniciativa impulsada por el municipio de Ñuñoa, la Cámara de Comercio (CCTEÑ) y el Gobierno de Santiago para reducir a cero los residuos de más de 15 restaurantes del barrio. Green Voice se suma a este movimiento desde el restaurante La Finestra.</p>
+        <div class="nunoa-tags">
+        <span class="ntag">♻️ Residuo cero</span>
+        <span class="ntag">🌱 Economía circular</span>
+        <span class="ntag">🤝 15+ restaurantes</span>
+        <span class="ntag">🏙️ Barrio sustentable</span>
+        <span class="ntag">🏛️ Municipio Ñuñoa</span>
+        </div>
+    </div>
+    </div>
+
+    <!-- SECCIÓN QR -->
+    <div class="qr-section">
+    <div class="qr-icon" aria-hidden="true"><i class="ti ti-qrcode"></i></div>
+    <div class="qr-text">
+        <h4>Escanea el código QR</h4>
+        <p>Encuentra nuestros jardines en el restaurante La Finestra y escanea para aprender sobre reciclaje y economía circular.</p>
+    </div>
+    </div>
+
     <footer>
-        <strong>Green Voice</strong> · Restaurante La Finestra · Ñuñoa, Santiago<br>
-        <span>Proyecto estudiantil · Jardines verticales con PET reciclado · Plaza Ñuñoa Zero</span>
+    <p><strong>Green Voice</strong> · Restaurante La Finestra · Ñuñoa, Santiago</p>
+    <p style="margin-top:5px;"><span>Proyecto estudiantil · PET reciclado · Plaza Ñuñoa Zero</span></p>
     </footer>
+
+    <script>
+    let hc = 0, ht = 3;
+    function hGo(i) {
+        hc = i;
+        document.getElementById('hs').style.transform = 'translateX(-' + (hc * 100) + '%)';
+        document.querySelectorAll('.hdot').forEach(function(d, j) {
+        d.classList.toggle('on', j === hc);
+        });
+    }
+    function hNext() { hGo((hc + 1) % ht); }
+    function hPrev() { hGo((hc - 1 + ht) % ht); }
+    setInterval(hNext, 4000);
+    </script>
 
     </body>
     </html>
