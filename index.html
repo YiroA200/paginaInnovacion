@@ -6,111 +6,92 @@
     <title>Green Voice · Jardines Verticales Reciclados</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"/>
     <style>
-        *{box-sizing:border-box;margin:0;padding:0;}
-        body{font-family:'Segoe UI',sans-serif;background:#fff;color:#1a1a1a;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Segoe UI',sans-serif;background:#fff;color:#1a1a1a;}
 
-        nav{
-        background:#085041;padding:0.75rem 1.5rem;
-        display:flex;align-items:center;justify-content:space-between;
-        position:sticky;top:0;z-index:100;
-        }
-        .logo{color:white;font-size:1.2rem;font-weight:500;letter-spacing:0.02em;}
-        .logo span{color:#5DCAA5;}
-        .nav-links{display:flex;gap:1.5rem;}
-        .nav-links a{color:rgba(255,255,255,0.75);font-size:13px;text-decoration:none;}
-        .nav-links a:hover{color:white;}
+    nav{background:#085041;padding:0.75rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+    .logo{color:white;font-size:1.2rem;font-weight:500;}
+    .logo span{color:#5DCAA5;}
+    .nav-links{display:flex;gap:1.5rem;}
+    .nav-links a{color:rgba(255,255,255,0.75);font-size:13px;text-decoration:none;}
+    .nav-links a:hover{color:white;}
 
-        .hero-slider{position:relative;height:320px;overflow:hidden;}
-        .hero-slides{display:flex;height:100%;transition:transform 0.5s ease;}
-        .hero-slide{
-        min-width:100%;height:100%;
-        display:flex;flex-direction:column;align-items:center;justify-content:center;
-        text-align:center;padding:2.5rem 2rem;
-        }
-        .hs1{background:linear-gradient(160deg,#085041,#1D9E75);}
-        .hs2{background:linear-gradient(160deg,#04342C,#0F6E56);}
-        .hs3{background:linear-gradient(160deg,#0F6E56,#5DCAA5);}
-        .hero-slide .icon-big{font-size:56px;color:rgba(255,255,255,0.22);margin-bottom:1rem;}
-        .hero-badge{
-        display:inline-block;background:rgba(255,255,255,0.18);
-        border:1px solid rgba(255,255,255,0.3);border-radius:999px;
-        padding:4px 16px;font-size:12px;color:white;margin-bottom:0.75rem;
-        }
-        .hero-slide h2{font-size:2rem;font-weight:500;color:white;line-height:1.25;margin-bottom:0.5rem;}
-        .hero-slide p{font-size:0.95rem;color:rgba(255,255,255,0.82);line-height:1.6;max-width:420px;}
-        .hero-nav{
-        position:absolute;bottom:16px;left:0;right:0;
-        display:flex;justify-content:center;gap:8px;
-        }
-        .hdot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4);border:none;padding:0;cursor:pointer;}
-        .hdot.on{background:white;}
-        .harr{
-        position:absolute;top:50%;transform:translateY(-50%);
-        background:rgba(0,0,0,0.25);border:none;color:white;
-        width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:18px;
-        display:flex;align-items:center;justify-content:center;
-        }
-        .harr.l{left:14px;}
-        .harr.r{right:14px;}
+    .hero-slider{position:relative;height:300px;overflow:hidden;}
+    .hero-slides{display:flex;height:100%;transition:transform 0.5s ease;}
+    .hero-slide{min-width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2.5rem 2rem;}
+    .hs1{background:#085041;}
+    .hs2{background:#0F6E56;}
+    .hs3{background:#1D9E75;}
+    .hero-badge{display:inline-block;background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);border-radius:999px;padding:4px 16px;font-size:12px;color:white;margin-bottom:0.75rem;}
+    .hero-slide h2{font-size:1.9rem;font-weight:500;color:white;margin-bottom:0.5rem;}
+    .hero-slide p{font-size:0.92rem;color:rgba(255,255,255,0.85);line-height:1.6;max-width:380px;}
+    .hero-nav{position:absolute;bottom:16px;left:0;right:0;display:flex;justify-content:center;gap:8px;}
+    .hdot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4);border:none;padding:0;cursor:pointer;}
+    .hdot.on{background:white;}
+    .harr{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.25);border:none;color:white;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;}
+    .harr.l{left:14px;}
+    .harr.r{right:14px;}
 
-        .stats-bar{
-        background:#085041;
-        display:grid;grid-template-columns:repeat(3,1fr);
-        text-align:center;padding:1rem 0;
-        }
-        .stat-item{border-right:0.5px solid rgba(255,255,255,0.15);}
-        .stat-item:last-child{border:none;}
-        .stat-n{font-size:1.4rem;font-weight:500;color:#5DCAA5;}
-        .stat-l{font-size:11px;color:rgba(255,255,255,0.6);margin-top:3px;}
+    .gallery-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:14px;background:#f0f4f0;}
+    .gallery-strip::-webkit-scrollbar{display:none;}
+    .gimg{height:130px;width:100%;border-radius:12px;object-fit:cover;background:#ddd;}
 
-        .sec{padding:2rem 1.5rem;max-width:960px;margin:0 auto;}
-        .sec-label{font-size:11px;font-weight:500;letter-spacing:0.1em;color:#0F6E56;text-transform:uppercase;margin-bottom:0.4rem;}
-        .sec-title{font-size:1.3rem;font-weight:500;color:#1a1a1a;margin-bottom:1.2rem;}
+    .stats-bar{background:#085041;display:grid;grid-template-columns:repeat(3,1fr);text-align:center;padding:1rem 0;}
+    .stat-item{border-right:0.5px solid rgba(255,255,255,0.15);}
+    .stat-item:last-child{border:none;}
+    .stat-n{font-size:1.4rem;font-weight:500;color:#5DCAA5;}
+    .stat-l{font-size:11px;color:rgba(255,255,255,0.6);margin-top:3px;}
 
-        .cards-scroll{display:flex;gap:14px;overflow-x:auto;padding-bottom:8px;scrollbar-width:none;}
-        .cards-scroll::-webkit-scrollbar{display:none;}
-        .ccard{
-        min-width:200px;background:#fff;
-        border:0.5px solid #e0e0e0;border-radius:14px;overflow:hidden;flex-shrink:0;
-        }
-        .ccard-img{height:120px;display:flex;align-items:center;justify-content:center;font-size:48px;}
-        .ci1{background:linear-gradient(135deg,#E1F5EE,#9FE1CB);}
-        .ci2{background:linear-gradient(135deg,#d4f0e5,#5DCAA5);}
-        .ci3{background:linear-gradient(135deg,#9FE1CB,#1D9E75);}
-        .ci4{background:linear-gradient(135deg,#E1F5EE,#0F6E56);}
-        .ccard-body{padding:0.9rem;}
-        .ccard-body h4{font-size:0.9rem;font-weight:500;color:#1a1a1a;margin-bottom:0.25rem;}
-        .ccard-body p{font-size:0.8rem;color:#666;line-height:1.5;}
+    .sec{padding:2rem 1.5rem;max-width:960px;margin:0 auto;}
+    .sec-label{font-size:11px;font-weight:500;letter-spacing:0.1em;color:#0F6E56;text-transform:uppercase;margin-bottom:0.4rem;}
+    .sec-title{font-size:1.3rem;font-weight:500;color:#1a1a1a;margin-bottom:1.2rem;}
 
-        hr.div{border:none;border-top:0.5px solid #e8e8e8;}
+    .imgcard-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;}
+    .imgcard{border-radius:14px;overflow:hidden;border:0.5px solid #e0e0e0;background:#fff;}
+    .imgcard img{width:100%;height:200px;object-fit:cover;object-position:center;display:block;background:#ddd;}
+    .imgcard-body{padding:0.75rem 0.85rem;}
+    .imgcard-body h4{font-size:0.85rem;font-weight:500;color:#1a1a1a;}
+    .imgcard-body p{font-size:0.75rem;color:#666;margin-top:3px;line-height:1.4;}
 
-        .steps{display:flex;flex-direction:column;gap:12px;}
-        .step{display:flex;gap:14px;align-items:flex-start;background:#fff;border:0.5px solid #e0e0e0;border-radius:14px;padding:1.1rem;}
-        .step-ico{min-width:42px;height:42px;border-radius:10px;background:#E1F5EE;display:flex;align-items:center;justify-content:center;font-size:22px;color:#0F6E56;}
-        .step-txt h4{font-size:0.92rem;font-weight:500;color:#1a1a1a;margin-bottom:0.25rem;}
-        .step-txt p{font-size:0.82rem;color:#666;line-height:1.5;}
+    hr.div{border:none;border-top:0.5px solid #e8e8e8;}
 
-        .nunoa-box{background:#085041;border-radius:14px;padding:1.5rem;}
-        .nunoa-box h3{font-size:1.1rem;font-weight:500;color:white;margin-bottom:0.5rem;}
-        .nunoa-box p{font-size:0.85rem;color:rgba(255,255,255,0.75);line-height:1.7;margin-bottom:1rem;}
-        .nunoa-tags{display:flex;flex-wrap:wrap;gap:7px;}
-        .ntag{background:rgba(255,255,255,0.12);border:0.5px solid rgba(255,255,255,0.2);border-radius:999px;padding:4px 13px;font-size:12px;color:rgba(255,255,255,0.85);}
+    .steps{display:flex;flex-direction:column;gap:12px;}
+    .step{display:flex;gap:14px;align-items:flex-start;background:#fff;border:0.5px solid #e0e0e0;border-radius:14px;padding:1.1rem;}
+    .step-ico{min-width:42px;height:42px;border-radius:10px;background:#E1F5EE;display:flex;align-items:center;justify-content:center;font-size:22px;color:#0F6E56;}
+    .step-txt h4{font-size:0.92rem;font-weight:500;color:#1a1a1a;}
+    .step-txt p{font-size:0.82rem;color:#666;line-height:1.5;margin-top:3px;}
 
-        .qr-section{background:#E1F5EE;padding:2rem 1.5rem;display:flex;gap:1.5rem;align-items:center;max-width:100%;}
-        .qr-icon{font-size:52px;color:#085041;flex-shrink:0;}
-        .qr-text h4{font-size:1.1rem;font-weight:500;color:#085041;margin-bottom:0.4rem;}
-        .qr-text p{font-size:0.88rem;color:#0F6E56;line-height:1.6;}
+    .nunoa-box{background:#085041;border-radius:14px;padding:1.5rem;}
+    .nunoa-box h3{font-size:1.1rem;font-weight:500;color:white;margin-bottom:0.5rem;}
+    .nunoa-box p{font-size:0.85rem;color:rgba(255,255,255,0.75);line-height:1.7;margin-bottom:1rem;}
+    .nunoa-tags{display:flex;flex-wrap:wrap;gap:7px;}
+    .ntag{background:rgba(255,255,255,0.12);border:0.5px solid rgba(255,255,255,0.2);border-radius:999px;padding:4px 13px;font-size:12px;color:rgba(255,255,255,0.85);}
 
-        footer{background:#04342C;padding:1.5rem 2rem;text-align:center;}
-        footer p{font-size:0.85rem;color:rgba(255,255,255,0.6);}
-        footer strong{color:#5DCAA5;}
-        footer span{font-size:12px;opacity:0.5;}
+    .restobtn{margin-top:1.2rem;width:100%;background:#0F6E56;color:white;border:none;border-radius:10px;padding:0.9rem;font-size:0.92rem;font-weight:500;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;}
+    .restobtn:active{transform:scale(0.98);}
 
-        @media(max-width:600px){
-        .hero-slide h2{font-size:1.5rem;}
-        .sec{padding:1.5rem 1.1rem;}
-        .qr-section{flex-direction:column;text-align:center;}
-        }
+    .restolist{display:none;flex-direction:column;gap:8px;margin-top:12px;}
+    .restolist.open{display:flex;}
+    .resto-row{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#fff;border:0.5px solid #e0e0e0;border-radius:10px;padding:0.8rem 0.95rem;}
+    .resto-info h5{font-size:0.9rem;font-weight:500;color:#1a1a1a;}
+    .resto-info p{font-size:0.76rem;color:#666;margin-top:2px;}
+    .resto-maps{display:flex;align-items:center;gap:5px;background:#E1F5EE;color:#085041;border:none;border-radius:999px;padding:7px 14px;font-size:12px;font-weight:500;text-decoration:none;flex-shrink:0;}
+
+    .qr-section{background:#E1F5EE;padding:2rem 1.5rem;display:flex;gap:1.5rem;align-items:center;}
+    .qr-icon{font-size:52px;color:#085041;flex-shrink:0;}
+    .qr-text h4{font-size:1.1rem;font-weight:500;color:#085041;}
+    .qr-text p{font-size:0.88rem;color:#0F6E56;line-height:1.6;margin-top:4px;}
+
+    footer{background:#04342C;padding:1.5rem 2rem;text-align:center;}
+    footer p{font-size:0.85rem;color:rgba(255,255,255,0.6);}
+    footer strong{color:#5DCAA5;}
+    footer span{font-size:12px;opacity:0.5;}
+
+    @media(max-width:600px){
+    .hero-slide h2{font-size:1.5rem;}
+    .sec{padding:1.5rem 1.1rem;}
+    .qr-section{flex-direction:column;text-align:center;}
+    }
     </style>
     </head>
     <body>
@@ -119,28 +100,24 @@
     <div class="logo">Green<span>Voice</span></div>
     <div class="nav-links">
         <a href="#proyecto">Proyecto</a>
-        <a href="#como">Cómo funciona</a>
+        <a href="#galeria">Galería</a>
         <a href="#nunoa">Ñuñoa Zero</a>
     </div>
     </nav>
 
-    <!-- HERO SLIDER -->
     <div class="hero-slider">
     <div class="hero-slides" id="hs">
         <div class="hero-slide hs1">
-        <div class="icon-big" aria-hidden="true"><i class="ti ti-plant-2"></i></div>
         <div class="hero-badge">Proyecto estudiantil · Ñuñoa, Santiago</div>
         <h2>Green Voice</h2>
         <p>Jardines verticales reciclados para el restaurante La Finestra</p>
         </div>
         <div class="hero-slide hs2">
-        <div class="icon-big" aria-hidden="true"><i class="ti ti-recycle"></i></div>
         <div class="hero-badge">Material reciclado</div>
         <h2>Botellas PET N°1</h2>
         <p>Transformamos plástico reciclado en espacios verdes y llamativos para el barrio</p>
         </div>
         <div class="hero-slide hs3">
-        <div class="icon-big" aria-hidden="true"><i class="ti ti-qrcode"></i></div>
         <div class="hero-badge">Educación ambiental</div>
         <h2>Escanea y aprende</h2>
         <p>Códigos QR en cada jardín con información sobre reciclaje y economía circular</p>
@@ -155,90 +132,69 @@
     </div>
     </div>
 
-    <!-- STATS BAR -->
+    <div class="gallery-strip" aria-label="Galería de jardines verticales">
+    <img class="gimg" src="imagenes/jardin2.jpg" alt="Jardín vertical con botellas recicladas colgantes con flores"/>
+    <img class="gimg" src="imagenes/jardin6.jpg" alt="Jardín vertical con canales de bambú y lechugas"/>
+    <img class="gimg" src="imagenes/jardin1.jpg" alt="Jardín vertical con tubos de bambú y plantas"/>
+    <img class="gimg" src="imagenes/jardin5.jpg" alt="Plantas en frascos de vidrio colgados en muro de ladrillo"/>
+    </div>
+
     <div class="stats-bar">
     <div class="stat-item"><div class="stat-n">PET #1</div><div class="stat-l">Material usado</div></div>
     <div class="stat-item"><div class="stat-n">100%</div><div class="stat-l">Reciclado</div></div>
     <div class="stat-item"><div class="stat-n">QR</div><div class="stat-l">Educativo</div></div>
     </div>
 
-    <!-- SECCIÓN PROYECTO -->
-    <div id="proyecto" class="sec">
-    <div class="sec-label">El proyecto</div>
-    <div class="sec-title">¿Qué es Green Voice?</div>
-    <div class="cards-scroll">
-        <div class="ccard">
-        <div class="ccard-img ci1" aria-hidden="true"><i class="ti ti-recycle" style="color:#085041"></i></div>
-        <div class="ccard-body">
-            <h4>Material reciclado</h4>
-            <p>Botellas PET N°1 convertidas en macetas para jardines verticales.</p>
+    <div id="galeria" class="sec">
+    <div class="sec-label">Galería</div>
+    <div class="sec-title">Jardines verticales reciclados</div>
+    <div class="imgcard-grid">
+        <div class="imgcard">
+        <img src="imagenes/jardin3.jpg" alt="Jardín vertical con botellas PET recicladas y flores de colores"/>
+        <div class="imgcard-body"><h4>Botellas recicladas</h4><p>Macetas de colores hechas con PET N°1, con flores y hortalizas</p></div>
         </div>
+        <div class="imgcard">
+        <img src="imagenes/jardin4.jpg" alt="Distintos modelos de jardines verticales con materiales reciclados" />
+        <div class="imgcard-body"><h4>Distintos estilos</h4><p>Paneles, botellas colgantes y cajones de madera</p></div>
         </div>
-        <div class="ccard">
-        <div class="ccard-img ci2" aria-hidden="true"><i class="ti ti-plant-2" style="color:#085041"></i></div>
-        <div class="ccard-body">
-            <h4>Jardín vertical</h4>
-            <p>Plantas vivas instaladas en La Finestra, restaurante de Ñuñoa.</p>
+        <div class="imgcard">
+        <img src="imagenes/jardin1.jpg" alt="Jardín vertical con tubos de bambú reciclados" />
+        <div class="imgcard-body"><h4>Estructura natural</h4><p>Tubos reutilizados como macetas colgantes</p></div>
         </div>
-        </div>
-        <div class="ccard">
-        <div class="ccard-img ci3" aria-hidden="true"><i class="ti ti-qrcode" style="color:#fff"></i></div>
-        <div class="ccard-body">
-            <h4>Código QR</h4>
-            <p>Cada jardín educa sobre reciclaje y economía circular.</p>
-        </div>
-        </div>
-        <div class="ccard">
-        <div class="ccard-img ci4" aria-hidden="true"><i class="ti ti-heart" style="color:#fff"></i></div>
-        <div class="ccard-body">
-            <h4>Impacto real</h4>
-            <p>Aportamos al primer barrio gastronómico sustentable de Chile.</p>
-        </div>
+        <div class="imgcard">
+        <img src="imagenes/jardin6.jpg" alt="Jardín vertical con canales y hortalizas frescas" />
+        <div class="imgcard-body"><h4>Huerto vertical</h4><p>Lechugas y hortalizas en canales reciclados</p></div>
         </div>
     </div>
     </div>
 
     <hr class="div">
 
-    <!-- SECCIÓN CÓMO FUNCIONA -->
-    <div id="como" class="sec">
+    <div id="proyecto" class="sec">
     <div class="sec-label">Cómo funciona</div>
     <div class="sec-title">Del plástico al jardín</div>
     <div class="steps">
         <div class="step">
         <div class="step-ico" aria-hidden="true"><i class="ti ti-bottle"></i></div>
-        <div class="step-txt">
-            <h4>Recolección de PET</h4>
-            <p>Se juntan botellas plásticas tipo PET N°1, las más reciclables del mercado.</p>
-        </div>
+        <div class="step-txt"><h4>Recolección de PET</h4><p>Se juntan botellas plásticas tipo PET N°1, las más reciclables del mercado.</p></div>
         </div>
         <div class="step">
         <div class="step-ico" aria-hidden="true"><i class="ti ti-cut"></i></div>
-        <div class="step-txt">
-            <h4>Preparación y diseño</h4>
-            <p>Las botellas se cortan, pintan y transforman en macetas coloridas y llamativas.</p>
-        </div>
+        <div class="step-txt"><h4>Preparación y diseño</h4><p>Las botellas se cortan, pintan y transforman en macetas coloridas y llamativas.</p></div>
         </div>
         <div class="step">
         <div class="step-ico" aria-hidden="true"><i class="ti ti-wall"></i></div>
-        <div class="step-txt">
-            <h4>Instalación en La Finestra</h4>
-            <p>Se montan como jardines verticales en el restaurante del barrio Ñuñoa.</p>
-        </div>
+        <div class="step-txt"><h4>Instalación en La Finestra</h4><p>Se montan como jardines verticales en el restaurante del barrio Ñuñoa.</p></div>
         </div>
         <div class="step">
         <div class="step-ico" aria-hidden="true"><i class="ti ti-qrcode"></i></div>
-        <div class="step-txt">
-            <h4>QR educativo</h4>
-            <p>Se agregan códigos QR con información sobre reciclaje y economía circular.</p>
-        </div>
+        <div class="step-txt"><h4>QR educativo</h4><p>Se agregan códigos QR con información sobre reciclaje y economía circular.</p></div>
         </div>
     </div>
     </div>
 
     <hr class="div">
 
-    <!-- SECCIÓN ÑUÑOA ZERO -->
     <div id="nunoa" class="sec">
     <div class="sec-label">Contexto</div>
     <div class="sec-title">Plaza Ñuñoa Zero</div>
@@ -246,16 +202,51 @@
         <h3>Primer barrio gastronómico sustentable de Chile</h3>
         <p>Iniciativa impulsada por el municipio de Ñuñoa, la Cámara de Comercio (CCTEÑ) y el Gobierno de Santiago para reducir a cero los residuos de más de 15 restaurantes del barrio. Green Voice se suma a este movimiento desde el restaurante La Finestra.</p>
         <div class="nunoa-tags">
-        <span class="ntag">♻️ Residuo cero</span>
-        <span class="ntag">🌱 Economía circular</span>
-        <span class="ntag">🤝 15+ restaurantes</span>
-        <span class="ntag">🏙️ Barrio sustentable</span>
-        <span class="ntag">🏛️ Municipio Ñuñoa</span>
+        <span class="ntag">Residuo cero</span>
+        <span class="ntag">Economía circular</span>
+        <span class="ntag">15+ restaurantes</span>
+        <span class="ntag">Barrio sustentable</span>
+        <span class="ntag">Municipio Ñuñoa</span>
+        </div>
+    </div>
+
+    <button class="restobtn" onclick="toggleResto()">
+        <i class="ti ti-map-pin" aria-hidden="true"></i>
+        <span id="restobtn-label">Ver restaurantes de Plaza Ñuñoa</span>
+    </button>
+
+    <div class="restolist" id="restolist">
+        <div class="resto-row">
+        <div class="resto-info"><h5>La Finestra</h5><p>Av. Irarrázaval 3465 · ★ 4.4</p></div>
+        <a class="resto-maps" href="https://www.google.com/maps/place/?q=place_id:ChIJbUzd-L7PYpYR1PNsMNFvkeY" target="_blank"><i class="ti ti-external-link" aria-hidden="true"></i>Maps</a>
+        </div>
+        <div class="resto-row">
+        <div class="resto-info"><h5>¡Ay mi Madre! Restobar</h5><p>Alc. Balbina Vera 3550 · ★ 4.9</p></div>
+        <a class="resto-maps" href="https://www.google.com/maps/place/?q=place_id:ChIJVYkALdDPYpYRQyOksqbB45U" target="_blank"><i class="ti ti-external-link" aria-hidden="true"></i>Maps</a>
+        </div>
+        <div class="resto-row">
+        <div class="resto-info"><h5>Piccola Italia</h5><p>Jorge Washington 111 · ★ 4.6</p></div>
+        <a class="resto-maps" href="https://www.google.com/maps/place/?q=place_id:ChIJ66hIQgDPYpYRaEImzRGDgpw" target="_blank"><i class="ti ti-external-link" aria-hidden="true"></i>Maps</a>
+        </div>
+        <div class="resto-row">
+        <div class="resto-info"><h5>Patio Almeyda</h5><p>Dublé Almeyda 2900 · ★ 4.5</p></div>
+        <a class="resto-maps" href="https://www.google.com/maps/place/?q=place_id:ChIJ1zAsxmvPYpYRoIh7___HDm0" target="_blank"><i class="ti ti-external-link" aria-hidden="true"></i>Maps</a>
+        </div>
+        <div class="resto-row">
+        <div class="resto-info"><h5>Como en Lima</h5><p>Manuel de Salas 71 · ★ 4.3</p></div>
+        <a class="resto-maps" href="https://www.google.com/maps/place/?q=place_id:ChIJUWQWw77PYpYRVjyxNv_NugU" target="_blank"><i class="ti ti-external-link" aria-hidden="true"></i>Maps</a>
+        </div>
+        <div class="resto-row">
+        <div class="resto-info"><h5>La Tecla Bar</h5><p>Jorge Washington 164 · ★ 4.2</p></div>
+        <a class="resto-maps" href="https://www.google.com/maps/place/?q=place_id:ChIJddEdkL7PYpYR4RVd7N6BUXI" target="_blank"><i class="ti ti-external-link" aria-hidden="true"></i>Maps</a>
+        </div>
+        <div class="resto-row">
+        <div class="resto-info"><h5>Las Lanzas</h5><p>Humberto Trucco 25 · ★ 4.2</p></div>
+        <a class="resto-maps" href="https://www.google.com/maps/place/?q=place_id:ChIJT_ps4hLPYpYRhfmyL-bgQOY" target="_blank"><i class="ti ti-external-link" aria-hidden="true"></i>Maps</a>
         </div>
     </div>
     </div>
 
-    <!-- SECCIÓN QR -->
     <div class="qr-section">
     <div class="qr-icon" aria-hidden="true"><i class="ti ti-qrcode"></i></div>
     <div class="qr-text">
@@ -272,15 +263,22 @@
     <script>
     let hc = 0, ht = 3;
     function hGo(i) {
-        hc = i;
-        document.getElementById('hs').style.transform = 'translateX(-' + (hc * 100) + '%)';
-        document.querySelectorAll('.hdot').forEach(function(d, j) {
+    hc = i;
+    document.getElementById('hs').style.transform = 'translateX(-' + (hc * 100) + '%)';
+    document.querySelectorAll('.hdot').forEach(function(d, j) {
         d.classList.toggle('on', j === hc);
-        });
+    });
     }
     function hNext() { hGo((hc + 1) % ht); }
     function hPrev() { hGo((hc - 1 + ht) % ht); }
     setInterval(hNext, 4000);
+
+    function toggleResto(){
+    const el = document.getElementById('restolist');
+    const label = document.getElementById('restobtn-label');
+    el.classList.toggle('open');
+    label.textContent = el.classList.contains('open') ? 'Ocultar restaurantes' : 'Ver restaurantes de Plaza Ñuñoa';
+    }
     </script>
 
     </body>
